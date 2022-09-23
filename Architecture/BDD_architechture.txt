@@ -1,0 +1,67 @@
+[Compte] :
+	- IdCompte (int)
+	- lastname (string)
+	- firstname (string)
+	- username (string)
+	- mailCompte
+	- repQ1 (string)
+	- repQ2 (string)
+	- repQ3 (string)
+	- isAdmin (bool)
+
+
+Faire des réponses simple et concise.
+Sinon contacter l'administration via cette adresse-mail : ----@gmail.com
+Question 1 : Ville de naissance ?
+Question 2 : Le nom de votre permier Collège ?
+Question 3 : Quel est le nom de votre premier animal de compagnie ?
+
+
+----------------------------------------------------------------
+[Fiche] :
+	- IdFiche (int)
+	- categoriesFiche (string)
+	- labelFiche (string)
+	- dataFiche (string)
+	- soluceFiche (string) (nullable)
+	- IdAuthorFiche = IdCompte (int)
+	- isValidate (bool)
+	//- dateFiche (date)
+	//- likeFiche (int)
+	//- noteFiche (int)
+
+[Modif] :
+	- IdModif (int)
+	- IdAuthorModif = IdCompte (int)
+	- IdTargetAuthor = IdCompte (int)
+	- IdTargetFiche = IdFiche (int)
+	- labelModif (string)
+	- dataModif (string)
+
+
+
+[ReportFiche] :
+	- IdReportFiche (int)
+	- labelReportFiche (string)
+	- IdRefFiche = IdFiche (int)
+
+[Commentaire] :
+	- IdCom (int)
+	- dataCom (string)
+	- IdRefFiche = IdFiche (int)
+
+[ReportCom] :
+	- IdReportCom (int)
+	- labelReportCom (string)
+	- IdRefCom = IdCom (int)
+
+----------------------------------------------------------------
+[Categorie] :
+	- IdCat (int)
+	- labelCat (string)
+
+[Idee] :
+	- IdIdee (int)
+	- labelIdee (string)
+	- dataIdee (string)
+	//- categoriesIdee (string) (nullable)
