@@ -24,7 +24,7 @@
   <title>YourKnoledge - Home</title>
 </head>
 <body>
-  <!--=============== HEADER ===============-->
+    <!--=============== HEADER ===============-->
   <header>
     <div class="navbar bg-base-300">
       <div class="navbar-start">
@@ -37,7 +37,7 @@
             <li><a class="font-fredoka">Item 3</a></li>
           </ul>
         </div>
-        <a class="btn btn-ghost normal-case text-xl"><img class="object-contain w-44" src="./src/img/YKTextBlack.png" alt="icon"></a>
+        <a class="btn btn-ghost normal-case text-xl"><img class="object-contain w-44" src="../src/img/YKTextBlack.png" alt="icon"></a>
       </div>
       <div class="navbar-center hidden lg:flex">
         <ul class="menu menu-horizontal p-0">
@@ -50,22 +50,43 @@
       </div>
     </div>
   </header>
+
   <!--=============== MAIN ===============-->
   <section>
-    <div class="hero min-h-screen" style="background-image: url(./src/img/BgBookIA.png);">
-      <div class="hero-overlay bg-opacity-0"></div>
-      <div class="hero-content text-center text-neutral-content">
-        <div class="max-w-md">
-          <h1 class="mb-5 text-5xl font-fredoka text-black">Hello there</h1>
-          <p class="mb-5 font-rubik text-black">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
-            <a href="./pages/inscription.html"><button class="btn btn-primary">Inscription</button></a>
-            <a href="./pages/authentification.html"><button class="btn btn-primary">Connexion</button></a>
+    <div class="hero min-h-screen" style="background-image: url(../src/img/BgBookIA.png);">
+      <div class="hero-content flex-col lg:flex-row-reverse">
+        <div class="text-center lg:text-left">
+          <h1 class="text-5xl font-fredoka text-black">Login now!</h1>
+          <p class="py-6 font-rubik text-black">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
+        </div>
+        <div class="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+          <div class="card-body">
+            <div class="form-control">
+              <label class="label">
+                <span class="label-text font-fredoka">Email</span>
+              </label>
+              <input type="text" placeholder="email" class="input input-bordered font-rubik" />
+            </div>
+            <div class="form-control">
+              <label class="label">
+                <span class="label-text font-fredoka">Password</span>
+              </label>
+              <input type="text" placeholder="password" class="input input-bordered font-rubik" />
+              <label class="label">
+                <a href="#" class="label-text-alt link link-hover font-fredoka">Forgot password?</a>
+              </label>
+            </div>
+            <div class="form-control mt-6">
+              <button class="btn btn-primary">Login</button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </section>
+
   <!--=============== FOOTER ===============-->
-  <footer class="footer footer-center p-10 bg-base-300 text-base-content rounded">
+  <footer class="footer footer-center p-10 bg-base-200 text-base-content rounded">
     <div class="grid grid-flow-col gap-4">
       <a class="link link-hover">About us</a> 
       <a class="link link-hover">Contact</a> 
@@ -83,8 +104,5 @@
       <p>Copyright © 2022 - ProTech Company. All rights reserved</p>
     </div>
   </footer>
-
-  <!--=============== MAIN JS ===============-->
-  <script  src="./src/app.js"></script>
 </body>
 </html>
