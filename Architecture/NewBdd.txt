@@ -1,0 +1,286 @@
+DROP DATABASE IF EXISTS MLR4;
+
+CREATE DATABASE IF NOT EXISTS MLR4;
+USE MLR4;
+# -----------------------------------------------------------------------------
+#       TABLE : COMMENTAIRE
+# -----------------------------------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS COMMENTAIRE
+ (
+   IDCOM INTEGER(3) NOT NULL  ,
+   IDCOMPTE INTEGER(3) NOT NULL  ,
+   IDFICHE INTEGER(3) NOT NULL  ,
+   DATACOM varchar (255) NOT NULL  ,
+   IDREFFICHE INTEGER(3) NOT NULL  ,
+   IDAUTEURREPORTFICHE INTEGER(3) NOT NULL  , 
+     PRIMARY KEY (IDCOM) 
+ ) 
+ comment = "";
+
+# -----------------------------------------------------------------------------
+#       INDEX DE LA TABLE COMMENTAIRE
+# -----------------------------------------------------------------------------
+
+
+CREATE  INDEX I_FK_COMMENTAIRE_COMPTE
+     ON COMMENTAIRE (IDCOMPTE ASC);
+
+CREATE  INDEX I_FK_COMMENTAIRE_FICHE
+     ON COMMENTAIRE (IDFICHE ASC);
+
+# -----------------------------------------------------------------------------
+#       TABLE : IDEE
+# -----------------------------------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS IDEE
+ (
+   IDIDEE INTEGER(2) NOT NULL  ,
+   IDCOMPTE Integer (3) NOT NULL  ,
+   NOMIDEE varchar (255) NOT NULL  ,
+   DATAIDEE varchar (255) NOT NULL  ,
+   IDAUTEURIDEE INTEGER(3) NOT NULL  
+   , PRIMARY KEY (IDIDEE) 
+ ) 
+ comment = "";
+
+# -----------------------------------------------------------------------------
+#       INDEX DE LA TABLE IDEE
+# -----------------------------------------------------------------------------
+
+
+CREATE  INDEX I_FK_IDEE_COMPTE
+     ON IDEE (IDCOMPTE ASC);
+
+# -----------------------------------------------------------------------------
+#       TABLE : FICHE
+# -----------------------------------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS FICHE
+ (
+   IDFICHE INTEGER(3) NOT NULL  ,
+   CATEGORIEFICHE varchar (255) NOT NULL  ,
+   NOMFICHE varchar (255) NOT NULL  ,
+   DATAFICHE varchar (255) NOT NULL  ,
+   SOLUCEFICHE varchar (255) NULL  ,
+   IDAUTEURFICHE INTEGER(3) NOT NULL  ,
+   ISVALIDATE boolean NOT NULL  ,
+   DATEFICHE DATE NOT NULL  
+   , PRIMARY KEY (IDFICHE) 
+ ) 
+ comment = "";
+
+# -----------------------------------------------------------------------------
+#       INDEX DE LA TABLE FICHE
+# -----------------------------------------------------------------------------
+
+
+CREATE  INDEX I_FK_FICHE_COMPTE
+     ON FICHE (IDCOMPTE ASC);
+
+# -----------------------------------------------------------------------------
+#       TABLE : MODIF
+# -----------------------------------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS MODIF
+ (
+   IDMODIF INTEGER(3) NOT NULL  ,
+   IDAUTEURMODIF INTEGER(3) NOT NULL  ,
+   IDTARGETAUTEUR INTEGER(3) NOT NULL  ,
+   IDTARGETFICHE INTEGER(3) NOT NULL  ,
+   NOMMODIF varchar (255) NOT NULL  ,
+   DATAMODIF varchar (255) NOT NULL  , 
+     PRIMARY KEY (IDMODIF) 
+ ) 
+ comment = "";
+
+# -----------------------------------------------------------------------------
+#       INDEX DE LA TABLE MODIF
+# -----------------------------------------------------------------------------
+
+
+CREATE  INDEX I_FK_MODIF_COMPTE
+     ON MODIF (IDCOMPTE ASC);
+
+CREATE  INDEX I_FK_MODIF_COMPTE1
+     ON MODIF (IDCOMPTE_REL_1 ASC);
+
+CREATE  INDEX I_FK_MODIF_FICHE
+     ON MODIF (IDFICHE ASC);
+
+# -----------------------------------------------------------------------------
+#       TABLE : REPORTFICHE
+# -----------------------------------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS REPORTFICHE
+ (
+   IDREPORTFICHE INTEGER(3) NOT NULL  ,
+   MOTIF varchar (255) NOT NULL  ,
+   IDREFFICHE INTEGER(3) NOT NULL  ,
+   IDAUTEURREPORTFICHE INTEGER(3) NOT NULL  
+   , PRIMARY KEY (IDREPORTFICHE) 
+ ) 
+ comment = "";
+
+# -----------------------------------------------------------------------------
+#       INDEX DE LA TABLE REPORTFICHE
+# -----------------------------------------------------------------------------
+
+
+CREATE  INDEX I_FK_REPORTFICHE_FICHE
+     ON REPORTFICHE (IDFICHE ASC);
+
+CREATE  INDEX I_FK_REPORTFICHE_COMPTE
+     ON REPORTFICHE (IDCOMPTE ASC);
+
+# -----------------------------------------------------------------------------
+#       TABLE : CATEGORIE
+# -----------------------------------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS CATEGORIE
+ (
+   IDCAT INTEGER(3) NOT NULL  ,
+   NOMCAT varchar (255) NOT NULL  , 
+     PRIMARY KEY (IDCAT) 
+ ) 
+ comment = "";
+
+# -----------------------------------------------------------------------------
+#       TABLE : COMPTE
+# -----------------------------------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS COMPTE
+ (
+   IDCOMPTE INTEGER(3) NOT NULL  ,
+   LASTNAME varchar (255) NOT NULL  ,
+   FIRSTNAME varchar (255) NOT NULL  ,
+   USERNAME varchar (255) NOT NULL  ,
+   MAILCOMPTE varchar (255) NOT NULL  ,
+   REPQ1 varchar (255) NOT NULL  ,
+   REPQ2 varchar (255) NOT NULL  ,
+   REPQ3 varchar (255) NOT NULL  ,
+   ISADMIN boolean NOT NULL  ,
+   ISVALIDATE boolean NOT NULL  
+   , PRIMARY KEY (IDCOMPTE) 
+ ) 
+ comment = "";
+
+# -----------------------------------------------------------------------------
+#       TABLE : REPORTCOM
+# -----------------------------------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS REPORTCOM
+ (
+   IDREPORTCOM INTEGER(3) NOT NULL  ,
+   IDCOM INTEGER(3) NOT NULL  ,
+   MOTIF Varchar (255) NOT NULL  ,
+   IDREFCOM INTEGER(3) NOT NULL  ,
+   IDAUTEURREPORTCOM INTEGER(3) NOT NULL  
+   , PRIMARY KEY (IDREPORTCOM) 
+ ) 
+ comment = "";
+
+# -----------------------------------------------------------------------------
+#       INDEX DE LA TABLE REPORTCOM
+# -----------------------------------------------------------------------------
+
+
+CREATE  INDEX I_FK_REPORTCOM_COMMENTAIRE
+     ON REPORTCOM (IDCOM ASC);
+
+CREATE  INDEX I_FK_REPORTCOM_COMPTE
+     ON REPORTCOM (IDCOMPTE ASC);
+
+# -----------------------------------------------------------------------------
+#       TABLE : CONTENIR
+# -----------------------------------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS CONTENIR
+ (
+   IDFICHE INTEGER(3) NOT NULL  ,
+   IDCAT INTEGER(3) NOT NULL  , 
+     PRIMARY KEY (IDFICHE,IDCAT) 
+ ) 
+ comment = "";
+
+# -----------------------------------------------------------------------------
+#       INDEX DE LA TABLE CONTENIR
+# -----------------------------------------------------------------------------
+
+
+CREATE  INDEX I_FK_CONTENIR_FICHE
+     ON CONTENIR (IDFICHE ASC);
+
+CREATE  INDEX I_FK_CONTENIR_CATEGORIE
+     ON CONTENIR (IDCAT ASC);
+
+
+# -----------------------------------------------------------------------------
+#       CREATION DES REFERENCES DE TABLE
+# -----------------------------------------------------------------------------
+
+
+ALTER TABLE COMMENTAIRE 
+  ADD FOREIGN KEY FK_COMMENTAIRE_COMPTE (IDCOMPTE)
+      REFERENCES COMPTE (IDCOMPTE) ;
+
+
+ALTER TABLE COMMENTAIRE 
+  ADD FOREIGN KEY FK_COMMENTAIRE_FICHE (IDFICHE)
+      REFERENCES FICHE (IDFICHE) ;
+
+
+ALTER TABLE IDEE 
+  ADD FOREIGN KEY FK_IDEE_COMPTE (IDCOMPTE)
+      REFERENCES COMPTE (IDCOMPTE) ;
+
+
+ALTER TABLE FICHE 
+  ADD FOREIGN KEY FK_FICHE_COMPTE (IDCOMPTE)
+      REFERENCES COMPTE (IDCOMPTE) ;
+
+
+ALTER TABLE MODIF 
+  ADD FOREIGN KEY FK_MODIF_COMPTE (IDCOMPTE)
+      REFERENCES COMPTE (IDCOMPTE) ;
+
+
+ALTER TABLE MODIF 
+  ADD FOREIGN KEY FK_MODIF_COMPTE1 (IDCOMPTE_REL_1)
+      REFERENCES COMPTE (IDCOMPTE) ;
+
+
+ALTER TABLE MODIF 
+  ADD FOREIGN KEY FK_MODIF_FICHE (IDFICHE)
+      REFERENCES FICHE (IDFICHE) ;
+
+
+ALTER TABLE REPORTFICHE 
+  ADD FOREIGN KEY FK_REPORTFICHE_FICHE (IDFICHE)
+      REFERENCES FICHE (IDFICHE) ;
+
+
+ALTER TABLE REPORTFICHE 
+  ADD FOREIGN KEY FK_REPORTFICHE_COMPTE (IDCOMPTE)
+      REFERENCES COMPTE (IDCOMPTE) ;
+
+
+ALTER TABLE REPORTCOM 
+  ADD FOREIGN KEY FK_REPORTCOM_COMMENTAIRE (IDCOM)
+      REFERENCES COMMENTAIRE (IDCOM) ;
+
+
+ALTER TABLE REPORTCOM 
+  ADD FOREIGN KEY FK_REPORTCOM_COMPTE (IDCOMPTE)
+      REFERENCES COMPTE (IDCOMPTE) ;
+
+
+ALTER TABLE CONTENIR 
+  ADD FOREIGN KEY FK_CONTENIR_FICHE (IDFICHE)
+      REFERENCES FICHE (IDFICHE) ;
+
+
+ALTER TABLE CONTENIR 
+  ADD FOREIGN KEY FK_CONTENIR_CATEGORIE (IDCAT)
+      REFERENCES CATEGORIE (IDCAT) ;
+
