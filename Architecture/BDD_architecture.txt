@@ -78,4 +78,4 @@ Question 3 : Quel est le nom de votre premier animal de compagnie ?
 	- nomIdee (string)
 	- dataIdee (string)
 	- IdAuteurIdee = IdCompte (int)(clé étrangère)
-	//- categoriesIdee (string) (nullable)
+	//- categorieIdee (string) (nullable)
