@@ -1,67 +1,81 @@
+**********************************************************************************
+Architecture de la BDD :
+
 [Compte] :
 	- IdCompte (int)
 	- lastname (string)
 	- firstname (string)
 	- username (string)
-	- mailCompte
+	- mailCompte (string)
 	- repQ1 (string)
 	- repQ2 (string)
 	- repQ3 (string)
 	- isAdmin (bool)
+	- isValidate (bool)
 
 
-Faire des réponses simple et concise.
+
+Faire des réponses simples et concises.
 Sinon contacter l'administration via cette adresse-mail : ----@gmail.com
 Question 1 : Ville de naissance ?
-Question 2 : Le nom de votre permier Collège ?
+Question 2 : Le nom de votre premier collège ?
 Question 3 : Quel est le nom de votre premier animal de compagnie ?
 
 
 ----------------------------------------------------------------
 [Fiche] :
 	- IdFiche (int)
-	- categoriesFiche (string)
-	- labelFiche (string)
+	- categorieFiche (string)
+	- nomFiche (string)
 	- dataFiche (string)
 	- soluceFiche (string) (nullable)
-	- IdAuthorFiche = IdCompte (int)
+	- IdAuteurFiche = IdCompte (int) (clé étrangère)
 	- isValidate (bool)
-	//- dateFiche (date)
+	- dateFiche (date)
 	//- likeFiche (int)
 	//- noteFiche (int)
 
 [Modif] :
 	- IdModif (int)
-	- IdAuthorModif = IdCompte (int)
-	- IdTargetAuthor = IdCompte (int)
-	- IdTargetFiche = IdFiche (int)
-	- labelModif (string)
+	- IdAuteurModif = IdCompte (int)(clé étrangère)
+	- IdTargetAuteur = IdCompte (int)(clé étrangère)
+	- IdTargetFiche = IdFiche (int)(clé étrangère)
+	- nomModif (string)
 	- dataModif (string)
+
+
 
 
 
 [ReportFiche] :
 	- IdReportFiche (int)
-	- labelReportFiche (string)
-	- IdRefFiche = IdFiche (int)
+	- Motif (string)
+	- IdRefFiche = IdFiche (int)(clé étrangère)
+- IdAuteurReportFiche = IdCompte (int)(clé étrangère)
+
 
 [Commentaire] :
 	- IdCom (int)
 	- dataCom (string)
-	- IdRefFiche = IdFiche (int)
+	- IdRefFiche = IdFiche (int) (clé étrangère)
+	- IdAuteurCom = IdCompte (int)(clé étrangère)
+
+
 
 [ReportCom] :
 	- IdReportCom (int)
-	- labelReportCom (string)
-	- IdRefCom = IdCom (int)
+	- Motif (string)
+	- IdRefCom = IdCom (int)(clé étrangère)
+	- IdAuteurReportCom = IdCompte (int)(clé étrangère)
 
 ----------------------------------------------------------------
 [Categorie] :
 	- IdCat (int)
-	- labelCat (string)
+	- nomCat (string)
 
 [Idee] :
 	- IdIdee (int)
-	- labelIdee (string)
+	- nomIdee (string)
 	- dataIdee (string)
+	- IdAuteurIdee = IdCompte (int)(clé étrangère)
 	//- categoriesIdee (string) (nullable)
