@@ -12,4 +12,7 @@ https://fonts.google.com/specimen/Fredoka?query=fredoka&preview.text=Institut%20
 Palette de couleur : https://coolors.co/f4dbd8-bea8a7-c09891-775144-2a0800
 
 ********
-
+Doc INFO :
+  S2 :
+https://docs.google.com/document/d/13e6MfMdres4jFd-KjJYnEIA2E1YjkhKImry7jpGSsgg/edit
+********
