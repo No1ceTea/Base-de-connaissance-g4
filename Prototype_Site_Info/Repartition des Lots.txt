@@ -1,0 +1,20 @@
+Valentin :
+  - Lot 1
+  - Lot 2
+
+
+Nadir :
+  - Lot 6
+  - Lot 7
+  - Lot 3
+
+Allan :
+  - Lot 4
+  - Lot 5
+  - Lot 8
+
+
+--------------------
+Restants :
+
+Lot 9, Lot 10, Lot 11, Lot 12
